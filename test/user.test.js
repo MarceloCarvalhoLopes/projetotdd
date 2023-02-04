@@ -26,6 +26,26 @@ describe("Cadastro de usuário", () => {
             throw new Error(err);
         });
 
-    })
+    });
+
+    test("Deve impedir que um usuário se cadastre com os dados vazios", () =>{
+
+        let user = {
+            name : "",
+            email : "",
+            password: ""
+        }
+
+        return request.post("/user")
+        .send(user)
+        .then(res => {
+            expect(res.statusCode).toEqual(400); //bad request
+        }).catch(err => {
+            //fail(err);
+            throw new Error(err);
+        });
+
+
+    });
 
 })
