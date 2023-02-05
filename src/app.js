@@ -52,9 +52,12 @@ app.post("/user", async(req, res) => {
         res.json({email: req.body.email});        
     } catch (error) {
         res.sendStatus(500);
-    }
+    }  
+})
 
-    
+app.delete("/user/:email", async(req, res) => {
+    await User.deleteOne({"email": req.params.email});
+    res.sendStatus(200);
 })
 
 module.exports = app;
